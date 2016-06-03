@@ -1,0 +1,30 @@
+services:
+#    mrs_controle.example:
+#        class: MRS\ControleBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+  financas.querynative:
+    class: MRS\ControleBundle\Service\FinancasService
+    arguments: ['@service_container']
+    public: true
+    tags:
+      - { name: ServicoTeste }
+  horario.register:
+    class: MRS\ControleBundle\Service\HorarioService
+    arguments: ['@service_container','@doctrine.orm.entity_manager']
+    tags:
+      - { name: RegistroPonto }
+  send.message:
+    class: MRS\ControleBundle\Service\SendMailService
+    arguments: ['@service_container']
+
+  charts.service:
+    class: MRS\ControleBundle\Service\ChartService
+    arguments: ['@service_container']
+
+  number.generate:
+    class: MRS\ControleBundle\Service\JogoService
+    arguments: ['@service_container']
+
+  dir.generate:
+    class: MRS\ControleBundle\Service\GenerateDirService
+    arguments: ['@service_container']

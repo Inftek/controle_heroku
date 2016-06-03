@@ -1,0 +1,36 @@
+{% extends 'MRSControleBundle:TbCategoria/template:template.html.twig' %}
+
+{% block panelhead %}
+
+    {{ include('MRSControleBundle:TbCategoria/template:painel.html.twig') }}
+
+{% endblock %}
+
+{% block panelbody %}
+
+    <table class="record_properties">
+        <tbody>
+        <tr>
+            <th>Descricao: </th>
+            <td>{{ entity.catDescricao }}</td>
+        </tr>
+        <tr>
+            <th>Ativo: </th>
+            <td>{{ entity.catAtivo }}</td>
+        </tr>
+        <tr>
+            <th>Codigo: </th>
+            <td>{{ entity.catCodigo }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
+
+{% block panelfooter %}
+    <div class="row">
+        <div class="col-md-2 pull-left">
+            {{ form(delete_form) }}
+        </div>
+    </div>
+{% endblock %}

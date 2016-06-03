@@ -1,0 +1,52 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+
+    <a href="{{ path('product_new') }}" class="btn btn-primary">
+        <i class="glyphicon glyphicon-plus"></i>
+        Novo
+    </a>
+
+    <h1>Product list</h1>
+
+    <table class="table table-bordered table-hover table-condensed table-striped">
+        <thead>
+        <tr>
+            <th>Image</th>
+            <th>Update</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+
+                <td>
+
+                    <div class="col-md-2">
+
+                        <a href="{{ path('product_show', { 'id': entity.id }) }}" class="thumbnail">
+
+                            <img class="" src="{{ vich_uploader_asset(entity,'imageFile') }}">
+                        </a>
+                    </div>
+
+                </td>
+
+                <td>{% if entity.updatedAt %}{{ entity.updatedAt|date('d-m-Y H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('product_show', { 'id': entity.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('product_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

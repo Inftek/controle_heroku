@@ -1,0 +1,106 @@
+{% extends '::base.html.twig' %}
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Finanças
+            <small>Mostrar</small>
+        </h1>
+
+    </section>
+
+{% endblock %}
+
+{% block body -%}
+
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+
+            <div class="row">
+
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                    <!-- Single button -->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-cog"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="{{ path('financas_edit',{ 'id': entity.id }) }}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                    Editar
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('financas') }}">
+                                    <span class="glyphicon glyphicon-list"></span>
+                                    Listar
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                    <a href="{{ path('financas') }}" class="btn btn-primary btn-sm">
+                        <span class="fa fa-reply"></span>
+                    </a>
+                </div>
+
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                    <a href="{{ path('financas_edit', { 'id': entity.finCodigo }) }}" class="btn btn-primary btn-sm">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                </div>
+
+                <div class="col-md-1 col-sm-1 col-xs-2">
+                    {%  if is_granted('ROLE_ADMIN') %}
+
+                        {{ form_start(delete_form) }}
+                        <button type="submit" class="btn btn-danger btn-sm remover-form">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                        {{ form_end(delete_form) }}
+
+                    {%  endif %}
+                </div>
+
+            </div>
+
+        </div>
+        <div class="panel-body">
+
+            <table>
+                <tbody>
+                <tr>
+                    <th>Data Criacao:</th>
+                    <td>{{ entity.finDataCadastro|date('d/m/Y') }}</td>
+                </tr>
+                <tr>
+                    <th>Valor:</th>
+                    <td>{{ entity.finValor | number_format(2,',','.') }}</td>
+                </tr>
+                <tr>
+                    <th>Descricao:</th>
+                    <td>{{ entity.finDescricao }}</td>
+                </tr>
+                <tr>
+                    <th>Tipo:</th>
+                    <td>{{ entity.tenCodigo }}</td>
+                </tr>
+                <tr>
+                    <th>Categoria:</th>
+                    <td>{{ entity.catCodigo }}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="panel-footer">
+
+        </div>
+    </div>
+
+{% endblock %}

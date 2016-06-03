@@ -1,0 +1,12 @@
+{% extends 'MRSControleBundle:TbCategoria/template:template.html.twig' %}
+
+
+{% block panelhead %}
+    {{ include('MRSControleBundle:TbCategoria/template:painel.html.twig') }}
+{% endblock %}
+
+{% block panelbody %}
+
+    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+{% endblock %}

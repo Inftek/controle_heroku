@@ -39,7 +39,7 @@ class TbFinancasController extends Controller
         $entities = $this->get('knp_paginator')
                          ->paginate($entities,
                                     $request->query->getInt('page',1),
-                                    2);
+                                    10);
 
         return array(
             'entities' => $entities,

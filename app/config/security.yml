@@ -48,7 +48,7 @@ security:
             # form_login
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
-           #- { path: ^/admin, roles: ROLE_ADMIN }
+           - { path: ^/admin, roles: ROLE_ADMIN }
            - { path: ^/horario, roles: ROLE_ADMIN }
            - { path: ^/financas, roles: ROLE_ADMIN }
            - { path: ^/categoria, roles: ROLE_ADMIN }

@@ -66,7 +66,9 @@ class FinancasService
                                   INNER JOIN tb_categoria AS CAT
                                   ON FIN.cat_codigo = CAT.cat_codigo
                                   WHERE fin_data_cadastro >= ?
-                                  AND   fin_data_cadastro <= ?',array($dateInitial,$dateFinal))
+                                  AND   fin_data_cadastro <= ?
+                                  ORDER BY FIN.fin_data_cadastro DESC',
+                                        array($dateInitial,$dateFinal))
             ->fetchAll();
 
     }

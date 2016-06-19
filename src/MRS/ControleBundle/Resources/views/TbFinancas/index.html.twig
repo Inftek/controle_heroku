@@ -15,20 +15,17 @@
 {% block body -%}
 
     <div class="panel panel-default">
-        <div class="panel-heading">
-
-        </div>
 
         <div class="panel-body">
             <form class="form-inline" method="post" action="{{ path('financas') }}">
 
                 <div class="form-group">
-                    {# <label for="dataInicial">Data Inicial:</label>#}
+                    <span class="glyphicon glyphicon-calendar"></span>
                     <input type="date" name="dataInicial" value="{{ datas.dataInicial }}" class="form-control">
                 </div>
 
                 <div class="form-group">
-                    {#                    <label for="dataFinal">Data Final:</label>#}
+                    <span class="glyphicon glyphicon-calendar"></span>
                     <input type="date" name="dataFinal" value="{{ datas.dataFinal }}" class="form-control">
                 </div>
 
@@ -116,7 +113,7 @@
                     </div>
                 </div>
                 <div class="panel-footer">
-                    <h3 class="panel-title">Saldo no Período | R$ {{ render(controller('MRSControleBundle:Serializer:viewTotalOnPeriod',{'dataInicial':datas.dataInicial, 'dataFinal': datas.dataFinal })) | number_format(2,',','.')}} </h3>
+                    <h3 class="panel-title">Saldo no Período: R$ {{ render(controller('MRSControleBundle:Serializer:viewTotalOnPeriod',{'dataInicial':datas.dataInicial, 'dataFinal': datas.dataFinal })) | number_format(2,',','.')}} </h3>
                 </div>
             </div>
         </div>

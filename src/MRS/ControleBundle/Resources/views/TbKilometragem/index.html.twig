@@ -2,17 +2,6 @@
 
 {% block title %} Lista {% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
-
-<style type="text/css">
-    .pagination {
-        margin: 0px
-    }
-</style>
-
-{% endblock %}
-
 {% block contentheader %}
     <section class="content-header">
         <h1>
@@ -63,27 +52,13 @@
                         <tr>
                             <td>
 
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="glyphicon glyphicon-cog"></span>
-                                        <span class="divider"></span>
+                                <a href="{{ path('kilometragem_show', { 'id': entity.kiCodigo }) }}" class="btn btn-primary btn-sm">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </a>
 
-                                    </button>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="{{ path('kilometragem_show', { 'id': entity.kiCodigo }) }}">
-                                                <span class="glyphicon glyphicon-eye-open"></span>
-                                                Mostrar
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="{{ path('kilometragem_edit', { 'id': entity.kiCodigo }) }}">
-                                                <span  class="glyphicon glyphicon-edit"></span>
-                                                Editar
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <a href="{{ path('kilometragem_edit', { 'id': entity.kiCodigo }) }}" class="btn btn-primary btn-sm">
+                                    <span  class="glyphicon glyphicon-edit"></span>
+                                </a>
 
                             </td>
                             <td><a href="{{ path('kilometragem_show', { 'id': entity.kiCodigo }) }}">{{ entity.kiKilometragem }}</a></td>

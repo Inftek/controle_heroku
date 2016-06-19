@@ -250,13 +250,5 @@ class UserController extends Controller
         ;
     }
 
-    /**
-     * @Route("/about/user/{valor}",name="user_index_2",defaults={"valor"="ohhhh"})
-     * @Method("GET|PUT")
-     */
-    public function getAllUserAction($valor)
-    {
-        return new Response("Hey IM the new Action in {$valor} ".get_class($this));
 
-    }
 }

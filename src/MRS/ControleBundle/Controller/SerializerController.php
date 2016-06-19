@@ -90,7 +90,7 @@ class SerializerController extends Controller
 
     /**
      * @return \Doctrine\DBAL\Driver\Statement
-     * @Route("/testesum", name="testesum")
+     * @Route("/viewtotalperiod", name="view_total_period")
      */
     public function viewTotalOnPeriodAction(Request $request)
     {

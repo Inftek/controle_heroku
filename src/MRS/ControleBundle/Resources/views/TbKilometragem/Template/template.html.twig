@@ -1,0 +1,98 @@
+{% extends '::base.html.twig' %}
+
+
+{% block contentheader %}
+    <section class="content-header">
+        <h1>
+            Kilometragem
+            <small>{% block pagename %}Horário{% endblock %}</small>
+        </h1>
+    </section>
+{% endblock %}
+
+{% block body -%}
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            {% block panelheading %}
+                {#
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-2">
+            <a href="{{ path('horario') }}" class="btn btn-primary btn-sm">
+                <span class="fa fa-reply"></span>
+            </a>
+        </div>
+
+        <div class="col-md-1 col-sm-1 col-xs-2">
+            <a href="{{ path('horario_show', { 'id': entity.horCodigo }) }}" class="btn btn-primary btn-sm ">
+                <span class="glyphicon glyphicon-eye-open"></span>
+            </a>
+        </div>
+
+        <div class="col-md-1 col-sm-1 col-xs-2">
+
+            {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-danger btn-sm remover-form">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            {{ form_end(delete_form) }}
+        </div>
+    </div>
+
+                #}
+                '           {% endblock %}
+        </div>
+
+        <div class="panel-body">
+            {% block panelbody %}
+                {#
+                            <table>
+                                <tbody>
+                                <tr>
+                                    <th>Hordiasemana</th>
+                                    <td>{{ entity.horDiaSemana }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Hordata</th>
+                                    <td>{{ entity.horData|date('Y-m-d H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horentrada</th>
+                                    <td>{{ entity.horEntrada | date('H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horalmocoida</th>
+                                    <td>{{ entity.horAlmocoIda | date('H:i:s')}}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horalmocovolta</th>
+                                    <td>{{ entity.horAlmocoVolta | date('H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horsaida</th>
+                                    <td>{{ entity.horSaida | date('H:i:s') }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horjustificativa</th>
+                                    <td>{{ entity.horJustificativa }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Horcodigo</th>
+                                    <td>{{ entity.horCodigo }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                #}
+            {% endblock %}
+        </div>
+
+        <div class="panel-footer">
+            {% block panelfooter %}
+
+            {% endblock %}
+        </div>
+
+    </div>
+
+{% endblock %}

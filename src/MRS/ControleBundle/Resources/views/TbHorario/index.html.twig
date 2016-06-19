@@ -16,7 +16,15 @@
 
 {% endblock %}
 
-    {% block contentheader %}{% endblock %}
+    {% block contentheader %}
+        <section class="content-header">
+            <h1>
+                Horário
+                <small>Listar</small>
+            </h1>
+
+        </section>
+    {% endblock %}
 
     {% block content %}
 
@@ -26,12 +34,7 @@
             <div class="col-md-12">
 
                 <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-search"></span>
-                            Pesquisar
-                        </h3>
-                    </div>
+
                     <div class="panel-body">
                         <form class="form-inline" method="post" action="{{ path('horario') }}">
 
@@ -49,7 +52,6 @@
 
                             <button type="submit" class="btn btn-default">
                                 <span class="glyphicon glyphicon-filter"></span>
-                                Filtrar
                             </button>
 
                         </form>
@@ -62,42 +64,40 @@
         </div>
 
 
-        <div class="row">
-            <div class="col-md-3 col-xs-4">
-                <a href="{{ path('horario_register') }}" class="btn btn-primary btn-lg" id="button-register"
-                        {% set nameButton = 'Registrar Ponto' %}
-                        {% if entity %}
-                            {% if entity.horSaida is not null %}
-                                disabled="disabled"
-                                {% set nameButton = 'Todos Registros Efetuados' %}
-                            {% endif %}
-                        {% endif %}
-                   role="button">
-                    <span class="glyphicon glyphicon-floppy-saved"></span>
-                    {{ nameButton }}
-                </a>
-            </div>
-
-            <div class="col-md-4 col-xs-6 col-xs-offset-1">
-                {% for notice in app.session.flashBag.get('notice') %}
-                    <div class="alert alert-info" role="alert">
-                        <span class="glyphicon glyphicon-alert"></span>
-                        {{ notice.notice }}
-                    </div>
-                {% endfor %}
-            </div>
-        </div>
-
 
         <div class="row">
             <div class="col-md-12 col-xs-12">
 
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <h3 class="panel-title">
-                            <span class="glyphicon glyphicon-list-alt"></span>
-                            Registros de Horários
-                        </h3>
+
+                        <div class="row">
+                            <div class="col-md-3 col-xs-4">
+                                <a href="{{ path('horario_register') }}" class="btn btn-primary" id="button-register"
+                                        {% set nameButton = 'Registrar Ponto' %}
+                                        {% if entity %}
+                                            {% if entity.horSaida is not null %}
+                                                disabled="disabled"
+                                                {% set nameButton = 'Todos Registros Efetuados' %}
+                                            {% endif %}
+                                        {% endif %}
+                                   role="button">
+                                    <span class="glyphicon glyphicon-floppy-saved"></span>
+                                    {{ nameButton }}
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 col-xs-6 col-xs-offset-1">
+                                {% for notice in app.session.flashBag.get('notice') %}
+                                    <div class="alert alert-info" role="alert">
+                                        <span class="glyphicon glyphicon-alert"></span>
+                                        {% if notice.notice %}{{ notice.notice }}{% endif %}
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+
                     </div>
 
                     <div class="panel-body">
@@ -123,32 +123,12 @@
                                 {% for entity in entities %}
                                     <tr>
                                         <td>
-                                            <div class="btn-group">
-                                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <span class="glyphicon glyphicon-th-list"></span>
-                                                    Opções <span class="caret"></span>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li>
-                                                        <a href="{{ path('horario_show', { 'id': entity.horCodigo}) }}">
-                                                            <span class="glyphicon glyphicon-eye-open"></span>
-                                                            Mostrar
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ path('horario_edit', { 'id': entity.horCodigo }) }}">
-                                                            <span  class="glyphicon glyphicon-edit"></span>
-                                                            Editar
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="{{ path('pdf_horario', { 'id': entity.horCodigo }) }}">
-                                                            <span  class="glyphicon glyphicon-save"></span>
-                                                            Salvar PDF
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                            <a href="{{ path('horario_show', { 'id': entity.horCodigo}) }}" class="btn btn-primary btn-sm">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </a>
+                                            <a href="{{ path('horario_edit', { 'id': entity.horCodigo }) }}" class="btn btn-primary btn-sm">
+                                                <span  class="glyphicon glyphicon-edit"></span>
+                                            </a>
                                         </td>
                                         <td>{{ entity.horDiaSemana }}</td>
                                         <td>{% if entity.horData %}{{ entity.horData|date('d-m-Y') }}{% endif %}</td>

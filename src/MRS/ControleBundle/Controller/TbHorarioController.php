@@ -184,8 +184,6 @@ class TbHorarioController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
-
         return $form;
     }
     /**
@@ -211,8 +209,6 @@ class TbHorarioController extends Controller
 
         if ($editForm->isValid()) {
             $em->flush();
-
-            $this->addFlash('notice','Atualizado com sucesso!');
 
             return $this->redirect($this->generateUrl('horario_show', array('id' => $id)));
         }
@@ -261,7 +257,6 @@ class TbHorarioController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('horario_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

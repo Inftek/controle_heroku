@@ -10,11 +10,6 @@ user_logout:
   path: /logout
   defaults: {_controller: UserBundle:Login:logout }
 
-user_index:
-  path: /about/user/{valor}
-  defaults: { _controller: UserBundle:User:getAllUser, valor: 1 }
-  methods: [POST|GET]
-
 users:
   resource: "@UserBundle/Controller/"
   type: annotation

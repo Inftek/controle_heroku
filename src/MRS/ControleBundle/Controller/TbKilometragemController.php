@@ -184,10 +184,6 @@ class TbKilometragemController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', SubmitType::class, ['label' => 'Salvar',
-                                        'attr' => ['class' => 'btn btn-primary']
-                                        ]);
-
         return $form;
     }
     /**
@@ -264,7 +260,6 @@ class TbKilometragemController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('kilometragem_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', SubmitType::class)
             ->getForm()
         ;
     }

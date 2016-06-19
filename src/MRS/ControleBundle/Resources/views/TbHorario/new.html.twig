@@ -1,12 +1,17 @@
-{% extends '::base.html.twig' %}
+{% extends '@MRSControle/TbHorario/Template/template.html.twig' %}
 
 {% block title %}Novo Horario{% endblock %}
 
-{% block body -%}
+{% block pagename %}Novo{% endblock %}
 
-    {% include('MRSControleBundle:TbHorario/Template:painel.html.twig') %}
+{% block panelheading %}
 
-    <h1>TbHorario creation</h1>
+    <a href="{{ path('horario') }}" class="btn btn-primary btn-sm">
+        <span class="fa fa-reply"></span>
+    </a>
+{% endblock %}
+
+{% block panelbody %}
 
     {{ form(form) }}
 

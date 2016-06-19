@@ -1,5 +1,6 @@
 imports:
-    - { resource: production_parameters.php }
+#    - { resource: production_parameters.php }
+    - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
 
@@ -30,7 +31,8 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
+        # handler_id:  ~
+        save_path: "%kernel.root_dir%/sessions"
     fragments:       ~
     http_method_override: true
 
@@ -41,12 +43,6 @@ twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
     form: ~
- #       resources:
- #          - BraincraftedBootstrapBundle:Form:bootstrap.html.twig
-    globals:
-        test: Test Globals
-        admin_skin: skin-blue
-
 
 # Assetic Configuration
 assetic:
@@ -94,20 +90,6 @@ swiftmailer:
 #    auth_mode: "%auth_mode%"
 #    port: "%mailer_port%"
 
-
-# Configuration on vich_uploader
-vich_uploader:
-    db_driver: orm
-    mappings:
-        product_image:
-            uri_prefix:   "/images/products"
-            upload_destination: "%kernel.root_dir%/../web/images/products"
-        my_mapping:
-            uri_prefix:   "/files/products"
-            upload_destination: "%kernel.root_dir%/../web/files/products"
-            directory_namer: dir.generate
-
-
 knp_paginator:
     page_range: 5                      # default page range used in pagination control
     default_options:
@@ -118,14 +100,3 @@ knp_paginator:
     template:
         pagination: :template:twitter_bootstrap_v3_pagination.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
-
-knp_snappy:
-    pdf:
-        enabled:    true
-        binary:     /usr/local/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
-        options:    []
-    image:
-        enabled:    true
-        binary:     /usr/local/bin/wkhtmltoimage #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltoimage.exe\"" for Windows users
-        options:    []
-    temporary_folder: "%kernel.cache_dir%/snappy"

@@ -35,10 +35,8 @@
         "jms/serializer": "^1.0",
         "jms/serializer-bundle": "^1.0",
         "doctrine/doctrine-fixtures-bundle":"dev-master",
-        "vich/uploader-bundle": "^1.0",
         "knplabs/knp-paginator-bundle": "^2.5",
         "ob/highcharts-bundle": "^1.4",
-        "knplabs/knp-snappy-bundle": "dev-master",
         "stof/doctrine-extensions-bundle": "^1.2",
         "sensio/generator-bundle": "~2.3"
     },

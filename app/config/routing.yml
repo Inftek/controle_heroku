@@ -7,9 +7,3 @@ mrs_user:
 app_financas:
     resource: "@MRSControleBundle/Controller/"
     type:     annotation
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-test_bundle:
-    resource: "@TesteBundle/Controller/"
-    type: annotation

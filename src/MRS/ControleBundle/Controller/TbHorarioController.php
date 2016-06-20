@@ -89,7 +89,7 @@ class TbHorarioController extends Controller
      */
     private function createCreateForm(TbHorario $entity)
     {
-        $form = $this->createForm(new TbHorarioType(), $entity, array(
+        $form = $this->createForm(TbHorarioType::class, $entity, array(
             'action' => $this->generateUrl('horario_create'),
             'method' => 'POST',
     ));
@@ -179,7 +179,7 @@ class TbHorarioController extends Controller
     */
     private function createEditForm(TbHorario $entity)
     {
-        $form = $this->createForm(new TbHorarioType(), $entity, array(
+        $form = $this->createForm(TbHorarioType::class, $entity, array(
             'action' => $this->generateUrl('horario_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));

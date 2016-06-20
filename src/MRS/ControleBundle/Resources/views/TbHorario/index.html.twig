@@ -39,20 +39,21 @@
                         <form class="form-inline" method="post" action="{{ path('horario') }}">
 
                             <div class="form-group">
-                                {# <label for="dataInicial">Data Inicial:</label>#}
                                 <span class="glyphicon glyphicon-calendar"></span>
-                                <input type="date" name="dataInicial" value="{{ datas.dataInicial }}" class="form-control">
+                                <input type="date" name="dataInicial" value="{{ datas.dataInicial }}" class="form-control input-sm">
                             </div>
 
                             <div class="form-group">
-                                {#                    <label for="dataFinal">Data Final:</label>#}
                                 <span class="glyphicon glyphicon-calendar"></span>
-                                <input type="date" name="dataFinal" value="{{ datas.dataFinal }}" class="form-control">
+                                <input type="date" name="dataFinal" value="{{ datas.dataFinal }}" class="form-control input-sm">
                             </div>
 
-                            <button type="submit" class="btn btn-default">
-                                <span class="glyphicon glyphicon-filter"></span>
-                            </button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default btn-sm">
+                                    <span class="glyphicon glyphicon-filter"></span>
+                                </button>
+                            </div>
+
 
                         </form>
                     </div>

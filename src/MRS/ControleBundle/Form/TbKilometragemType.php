@@ -3,6 +3,8 @@
 namespace MRS\ControleBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,10 +17,16 @@ class TbKilometragemType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('kiDescricao',null,['label' => 'Descrição:'])
-            ->add('kiKilometragem',null, ['label' => 'Kilometragem:'])
-            ->add('kiDataInicial',null,['label' => 'Data Inicial:'])
-            ->add('kiDataAtual',null,['label' => 'Data Atual:'])
+            ->add('kiDescricao',TextType::class,['label' => 'Descrição:',
+                                                 'attr' => ['class' =>'input-sm']])
+            ->add('kiKilometragem',TextType::class, ['label' => 'Kilometragem:',
+                                                     'attr' => ['class' =>'input-sm']])
+            ->add('kiDataInicial',DateType::class,['label' => 'Data Inicial:',
+                                                    'widget'=>'single_text',
+                                                    'attr' => ['class'=>'input-sm']])
+            ->add('kiDataAtual',DateType::class,['label' => 'Data Atual:',
+                                                 'widget'=>'single_text',
+                                                 'attr' => ['class'=>'input-sm']])
         ;
     }
     

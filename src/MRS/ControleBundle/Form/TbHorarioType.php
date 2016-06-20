@@ -18,14 +18,26 @@ class TbHorarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('horDiaSemana')
+            ->add('horDiaSemana',TextType::class,array('label'=>'Dia da Semana',
+                                                       'attr' => array('class'=>'input-sm')))
             ->add('horData',DateType::class,array('label'=>'Data',
-                                                  'widget'=>'single_text'))
-            ->add('horEntrada',TimeType::class,array('label'=>'Entrada'))
-            ->add('horAlmocoIda',TimeType::class,array('label'=>'Almoço Saída'))
-            ->add('horAlmocoVolta',TimeType::class,array('label'=>'Almoço Retorno'))
-            ->add('horSaida',TimeType::class,array('label'=>'Saída'))
-            ->add('horJustificativa',TextType::class,array('label'=>'Justificativa'))
+                                                  'widget'=>'single_text',
+                                                  'attr' => array('class'=>'input-sm')))
+            ->add('horEntrada',TimeType::class,array('label'=>'Entrada',
+                                                     'widget'=>'single_text',
+                                                     'attr' => array('class'=>'input-sm')))
+
+            ->add('horAlmocoIda',TimeType::class,array('label'=>'Almoço Saída',
+                                                       'widget'=>'single_text',
+                                                       'attr' => array('class'=>'input-sm')))
+            ->add('horAlmocoVolta',TimeType::class,array('label'=>'Almoço Retorno',
+                                                         'widget'=>'single_text',
+                                                         'attr' => array('class'=>'input-sm')))
+            ->add('horSaida',TimeType::class,array('label'=>'Saída',
+                                                   'widget'=>'single_text',
+                                                   'attr' => array('class'=>'input-sm')))
+            ->add('horJustificativa',TextType::class,array('label'=>'Justificativa',
+                                                           'attr' => array('class'=>'input-sm')))
         ;
     }
 

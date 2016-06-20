@@ -26,16 +26,20 @@ class TbFinancasType extends AbstractType
     {
         $builder
             ->add('finDataCadastro',DateType::class,array('label' => 'Data',
-                                                          'widget'=>'single_text'))
-            ->add('finValor',MoneyType::class, array('currency' => 'BRL', 'scale' => 2,'label' => 'Valor'))
-            ->add('finDescricao',TextType::class,array('label' => 'Descrição'))
+                                                          'widget'=>'single_text',
+                                                          'attr' => array('class' => 'input-sm')))
+            ->add('finValor',MoneyType::class, array('currency' => 'BRL',
+                                                     'scale' => 2,
+                                                     'label' => 'Valor',
+                                                     'attr' => array('class'=>'input-sm')))
+            ->add('finDescricao',TextType::class,array('label' => 'Descrição',
+                                                       'attr' => array('class'=>'input-sm')))
             ->add('tenCodigo',EntityType::class, array('label'=> 'Tipo',
                                               'class' => 'MRSControleBundle:TbTipoEntrada',
-                                              'placeholder' => false
-                                             )
-                )
+                                              'placeholder' => false,
+                                              'attr' => array('class'=>'input-sm')))
             ->add('catCodigo',EntityType::class,array('label' => 'Categoria',
-                                             'attr' => array('class' => 'select2'),
+                                             'attr' => array('class' => 'input-sm'),
                                              'class' => 'MRS\ControleBundle\Entity\TbCategoria'))
         ;
     }

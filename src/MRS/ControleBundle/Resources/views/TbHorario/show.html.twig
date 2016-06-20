@@ -50,19 +50,33 @@
         </tr>
         <tr>
             <th>Almoço Saida:</th>
-            <td>{{ entity.horAlmocoIda | date('H:i:s')}}</td>
+            <td>
+                {% if entity.horAlmocoIda %}
+                    {{ entity.horAlmocoIda | date('H:i:s')}}
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>Almoço Retorno:</th>
-            <td>{{ entity.horAlmocoVolta | date('H:i:s') }}</td>
+            <td>
+                {% if entity.horAlmocoVolta %}
+                    {{ entity.horAlmocoVolta | date('H:i:s') }}
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>Saída:</th>
-            <td>{{ entity.horSaida | date('H:i:s') }}</td>
+            <td>
+                {% if entity.horSaida %}
+                    {{ entity.horSaida | date('H:i:s') }}
+                {% endif %}
+            </td>
         </tr>
         <tr>
             <th>Justificativa:</th>
-            <td>{{ entity.horJustificativa }}</td>
+            <td>
+                {{ entity.horJustificativa }}
+            </td>
         </tr>
         </tbody>
     </table>

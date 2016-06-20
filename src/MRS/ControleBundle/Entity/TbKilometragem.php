@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * TbKilometragem
  *
  * @ORM\Table(name="tb_kilometragem")
- * @ORM\Entity(repositoryClass="MRS\ControleBundle\Entity\KilometragemRepository")
+ * @ORM\Entity(repositoryClass="MRS\ControleBundle\Repository\KilometragemRepository")
  */
 class TbKilometragem
 {

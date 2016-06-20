@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * TbHorario
  *
  * @ORM\Table(name="tb_horario")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="MRS\ControleBundle\Repository\HorarioRepository")
  */
 class TbHorario
 {

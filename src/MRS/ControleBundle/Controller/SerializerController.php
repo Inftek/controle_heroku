@@ -99,7 +99,8 @@ class SerializerController extends Controller
 
         $total = $this->get('financas.querynative')
                       ->sumTotalCostOnPeriod($request->get('dataInicial'),
-                                             $request->get('dataFinal'));
+                                             $request->get('dataFinal'),
+                          $this->getUser()->getId());
 
         return new Response($total['Total']);
     }

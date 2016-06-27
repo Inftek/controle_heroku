@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tb_tipo_entrada")
  * @ORM\Entity
  */
-class TbTipoEntrada
+class TbTipoEntrada extends User
 {
     /**
      * @var string

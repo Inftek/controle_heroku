@@ -27,11 +27,11 @@ class HorarioService
     }
 
 
-    private function queryHorario($coluna,$data)
+    private function queryHorario($coluna,$data, $user)
     {
         return $this->entityManager
                     ->getRepository('MRSControleBundle:TbHorario')
-                    ->getDataByColum($coluna, $data);
+                    ->getDataByColum($coluna, $data, $user);
 
     }
 
@@ -48,8 +48,9 @@ class HorarioService
         $horario = ['notice' => 'Todos os horarios do dia ja foram cadastrados'];
 
         $horaObj = new \DateTime('now');
+        $userId = $this->container->get('security.token_storage')->getToken()->getUser();
 
-        $entity = $this->queryHorario('hor_data',date('Y-m-d'));
+        $entity = $this->queryHorario('hor_data',date('Y-m-d'),$userId->getId());
 
         if ($entity['hor_data'] == '') {
 
@@ -57,6 +58,7 @@ class HorarioService
             $horario->setHorDiaSemana(date('D'));
             $horario->setHorData($horaObj);
             $horario->setHorEntrada($horaObj);
+            $horario->setUser($userId);
 
             $this->entityManager->persist($horario);
             $this->entityManager->flush();

@@ -38,7 +38,7 @@ class FinancasService
 
     }
 
-    public function sumTotalCostOnPeriod($dateInitial, $dateFinal)
+    public function sumTotalCostOnPeriod($dateInitial, $dateFinal, $user)
     {
         $dateInitial = ($dateInitial == '') ? '2015-01-01' : $dateInitial;
         $dateFinal = ($dateFinal == '') ? date('Y-m-d') : $dateFinal;
@@ -47,13 +47,15 @@ class FinancasService
             ->executeQuery('SELECT sum(fin_valor) AS Total
                                   FROM tb_financas
                                   WHERE fin_data_cadastro >= ?
-                                  AND   fin_data_cadastro <= ?',array($dateInitial,$dateFinal))
+                                  AND   fin_data_cadastro <= ?
+                                  AND user = ?',
+                                array($dateInitial,$dateFinal, $user))
             ->fetch();
 
     }
 
 
-    public function listarDadosFinanceirosPorPeriodo($dateInitial, $dateFinal)
+    public function listarDadosFinanceirosPorPeriodo($dateInitial, $dateFinal, $user)
     {
         $dateInitial = ($dateInitial == '') ? '2015-01-01' : $dateInitial;
         $dateFinal = ($dateFinal == '') ? date('Y-m-d') : $dateFinal;
@@ -67,8 +69,9 @@ class FinancasService
                                   ON FIN.cat_codigo = CAT.cat_codigo
                                   WHERE fin_data_cadastro >= ?
                                   AND   fin_data_cadastro <= ?
+                                  AND FIN.user = ?
                                   ORDER BY FIN.fin_data_cadastro DESC',
-                                        array($dateInitial,$dateFinal))
+                                        array($dateInitial,$dateFinal, $user))
             ->fetchAll();
 
     }

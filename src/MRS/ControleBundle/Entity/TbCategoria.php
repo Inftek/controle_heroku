@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="tb_categoria")
  * @ORM\Entity
  */
-class TbCategoria
+class TbCategoria extends User
 {
     /**
      * @var string

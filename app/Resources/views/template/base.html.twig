@@ -73,7 +73,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <span class="glyphicon glyphicon-user"></span>
                             <span class="hidden-xs">
+                             {% if app.user.username %}
                                 {{ app.user.username }}
+                             {% endif %}
                             </span>
                         </a>
                         <ul class="dropdown-menu">
@@ -136,12 +138,16 @@
 
                 <li class="treeview">
                     <a href="#">
-                        <i class="glyphicon glyphicon-cog"></i> <span>Administração</span>
+                        <i class="glyphicon glyphicon-cog"></i> <span>Cadastros</span>
                         <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
                         <li>
-                            <a href="{{ path('user') }}"><i class="glyphicon glyphicon-user"></i>Usuário</a>
+
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <a href="{{ path('user') }}"><i class="glyphicon glyphicon-user"></i>Usuário</a>
+                            {% endif %}
+
                             <a href="{{ path('tipoentrada') }}"><i class="fa fa-filter"></i>Tipo de Entrada</a>
                             <a href="{{ path('categoria') }}"><i class="fa fa-list-ul"></i>Categoria</a>
                         </li>

@@ -16,13 +16,14 @@ use Symfony\Component\Validator\Constraints\DateTime;
 class HorarioRepository extends EntityRepository
 {
 
-    public function getDataByColum($colunm, $data)
+    public function getDataByColum($colunm, $data, $user)
     {
         $stmt =  $this->getEntityManager()
                       ->getConnection()
-                      ->prepare("SELECT * FROM tb_horario WHERE {$colunm} = ?");
+                      ->prepare("SELECT * FROM tb_horario WHERE {$colunm} = ? AND user = ?");
 
         $stmt->bindParam(1,$data,\PDO::PARAM_STR);
+        $stmt->bindParam(2,$user,\PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -30,7 +31,7 @@ class HorarioRepository extends EntityRepository
     }
 
 
-    public function listarPontosByPeriod($dataInicial, $dataFinal)
+    public function listarPontosByPeriod($dataInicial, $dataFinal, $user)
     {
         $sql = "SELECT  hor_codigo
 					,hor_dia_semana
@@ -51,18 +52,19 @@ class HorarioRepository extends EntityRepository
 					(time_to_sec(hor_saida) - time_to_sec(hor_almoco_volta) ))) as 'HorasTrabalhas'
 
 					FROM tb_horario
-						WHERE hor_data BETWEEN ? AND ?";
+						WHERE hor_data BETWEEN ? AND ?
+						AND user = ?";
 
 
         return $this->getEntityManager()
                     ->createNativeQuery($sql, new ResultSetMapping())
-                    ->setParameters(array('1' =>$dataInicial,'2' => $dataFinal))
+                    ->setParameters(array('1' =>$dataInicial,'2' => $dataFinal, '3' => $user))
                     ->getResult();
 
 
     }
 
-    public function listarByPeriod($dataInicial, $dataFinal)
+    public function listarByPeriod($dataInicial, $dataFinal, $user)
     {
         $sql = "SELECT  hor_codigo AS horCodigo
 					,hor_dia_semana AS horDiaSemana
@@ -86,6 +88,7 @@ class HorarioRepository extends EntityRepository
 
 					FROM tb_horario
 					WHERE hor_data BETWEEN ? AND ?
+					AND user = ?
 					ORDER BY hor_data DESC";
 
 
@@ -95,6 +98,7 @@ class HorarioRepository extends EntityRepository
 
         $stmt->bindParam(1,$dataInicial,\PDO::PARAM_STR);
         $stmt->bindParam(2,$dataFinal,\PDO::PARAM_STR);
+        $stmt->bindParam(3,$user,\PDO::PARAM_STR);
 
         $stmt->execute();
 
@@ -160,13 +164,13 @@ class HorarioRepository extends EntityRepository
 
 	}
 
-    public function findByToday()
+    public function findByUserToday($user)
     {
         $toDay = new \DateTime('now');
 
             return $this->createQueryBuilder('h')
-                ->where("h.horData = :today")
-                ->setParameter('today',$toDay->format('Y-m-d'))
+                ->where("h.horData = :today AND h.user = :user")
+                ->setParameters(array('today'=> $toDay->format('Y-m-d'),'user' => $user))
                 ->getQuery()
                 ->getOneOrNullResult();
 

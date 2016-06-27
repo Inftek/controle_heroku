@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="tb_kilometragem")
  * @ORM\Entity(repositoryClass="MRS\ControleBundle\Repository\KilometragemRepository")
  */
-class TbKilometragem
+class TbKilometragem extends User
 {
 
     const NUM_LIMT = 5;

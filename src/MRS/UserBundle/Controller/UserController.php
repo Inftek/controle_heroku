@@ -53,6 +53,10 @@ class UserController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $password = $entity->getPlainPassword();
+            $entity->setPassword($this->get('security.encoder_factory')
+                                      ->getEncoder($entity)
+                                      ->encodePassword($password,$entity->getSalt()));
             $em->persist($entity);
             $em->flush();
 
@@ -107,8 +111,7 @@ class UserController extends Controller
      *
      * @Route("/{id}", name="user_show")
      * @Method("GET")
-     * @Template()
-     */
+      */
     public function showAction($id)
     {
         $em = $this->getDoctrine()->getManager();
@@ -121,10 +124,10 @@ class UserController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        return array(
+        return $this->render('@User/User/show.html.twig',array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
-        );
+        ));
     }
 
     /**

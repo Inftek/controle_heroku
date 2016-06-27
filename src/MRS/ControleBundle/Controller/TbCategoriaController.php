@@ -31,7 +31,8 @@ class TbCategoriaController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('MRSControleBundle:TbCategoria')->findAll();
+        $entities = $em->getRepository('MRSControleBundle:TbCategoria')
+                       ->findBy(array('user'=>$this->getUser()->getId()));
 
         $entities = $this->get('knp_paginator')->paginate(
             $entities,
@@ -59,6 +60,7 @@ class TbCategoriaController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setUser($this->getUser());
             $em->persist($entity);
             $em->flush();
 
@@ -128,6 +130,8 @@ class TbCategoriaController extends Controller
             throw $this->createNotFoundException('Unable to find TbCategoria entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -153,6 +157,8 @@ class TbCategoriaController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TbCategoria entity.');
         }
+
+        $this->get('security.user')->securityUser($entity);
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
@@ -202,6 +208,8 @@ class TbCategoriaController extends Controller
             throw $this->createNotFoundException('Unable to find TbCategoria entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -237,6 +245,8 @@ class TbCategoriaController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TbCategoria entity.');
             }
+
+            $this->get('security.user')->securityUser($entity);
 
             $em->remove($entity);
             $em->flush();

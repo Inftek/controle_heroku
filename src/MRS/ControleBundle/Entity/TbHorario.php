@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="tb_horario")
  * @ORM\Entity(repositoryClass="MRS\ControleBundle\Repository\HorarioRepository")
  */
-class TbHorario
+class TbHorario extends User
 {
 
     const NUM_ITENS = 10;

@@ -49,13 +49,15 @@ security:
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
     access_control:
            - { path: ^/admin, roles: ROLE_ADMIN }
-           - { path: ^/horario, roles: ROLE_ADMIN }
-           - { path: ^/financas, roles: ROLE_ADMIN }
-           - { path: ^/categoria, roles: ROLE_ADMIN }
-           - { path: ^/tipoentrada, roles: ROLE_ADMIN }
+           - { path: ^/horario, roles: ROLE_USER }
+           - { path: ^/financas, roles: ROLE_USER }
+           - { path: ^/categoria, roles: ROLE_USER }
+           - { path: ^/tipoentrada, roles: ROLE_USER }
            - { path: ^/jsonfinancas, roles: ROLE_USER }
            - { path: ^/testesum, roles: ROLE_SEILA }
-           - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+           - { path: ^/dashoboard, roles: ROLE_USER }
+           - { path: ^/about, roles: ROLE_USER }
+           - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
     role_hierarchy:
         ROLE_ADMIN: [ROLE_USER, ROLE_SEILA]
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

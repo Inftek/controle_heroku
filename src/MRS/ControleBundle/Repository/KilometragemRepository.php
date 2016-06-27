@@ -55,7 +55,7 @@ class KilometragemRepository extends EntityRepository
             ->getResult();
     }
 
-    public function getCalcKilometragem()
+    public function getCalcKilometragem($user)
     {
         return $this->getConnection()
                     ->fetchAll('SELECT
@@ -67,6 +67,7 @@ class KilometragemRepository extends EntityRepository
 						          DATEDIFF(ki_data_atual,ki_data_inicial) AS Dias,
 					              substr(ki_kilometragem / DATEDIFF(ki_data_atual,ki_data_inicial),1,7) AS Media
 					            FROM tb_kilometragem
-					            ORDER BY ki_codigo DESC');
+					            WHERE user = ?
+					            ORDER BY ki_codigo DESC',array($user));
     }
 }

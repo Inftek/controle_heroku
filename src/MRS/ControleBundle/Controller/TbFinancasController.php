@@ -33,8 +33,10 @@ class TbFinancasController extends Controller
 
         $datas[1] = ($request->get('dataFinal') == '') ? date('Y-m-d') : $request->get('dataFinal');
 
+        $userId = $this->getUser()->getId();
+
         $entities = $this->get('financas.querynative')
-                         ->listarDadosFinanceirosPorPeriodo($datas[0],$datas[1]);
+                         ->listarDadosFinanceirosPorPeriodo($datas[0],$datas[1],$userId);
 
         $entities = $this->get('knp_paginator')
                          ->paginate($entities,
@@ -61,6 +63,7 @@ class TbFinancasController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setUser($this->getUser());
             $em->persist($entity);
             $em->flush();
 
@@ -129,6 +132,8 @@ class TbFinancasController extends Controller
             throw $this->createNotFoundException('Unable to find TbFinancas entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -153,6 +158,8 @@ class TbFinancasController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TbFinancas entity.');
         }
+
+        $this->get('security.user')->securityUser($entity);
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
@@ -200,6 +207,8 @@ class TbFinancasController extends Controller
             throw $this->createNotFoundException('Unable to find TbFinancas entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -234,6 +243,8 @@ class TbFinancasController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TbFinancas entity.');
             }
+
+            $this->get('security.user')->securityUser($entity);
 
             $em->remove($entity);
             $em->flush();

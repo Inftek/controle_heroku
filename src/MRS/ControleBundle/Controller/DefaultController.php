@@ -10,9 +10,22 @@ use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
+
+
+    /**
+     * @return Response
+     * @Route("/", name="home")
+     * @Method({"GET"})
+     */
+    public function indexAction()
+    {
+        return $this->redirectToRoute('app_about');
+    }
+
     /**
      * @return Response
      * @Route("/about", name="app_about")
+     * @Method({"GET"})
      */
     public function aboutAction()
     {
@@ -22,6 +35,7 @@ class DefaultController extends Controller
     /**
      * @return Response
      * @Route("/dashboard", name="dashboard")
+     * @Method({"GET"})
      */
     public function dashboardAction()
     {

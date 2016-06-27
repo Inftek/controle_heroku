@@ -37,9 +37,10 @@ class TbHorarioController extends Controller
         $repository = $this->getDoctrine()->getManager()
                            ->getRepository('MRSControleBundle:TbHorario');
 
-        $entities = $repository->listarByPeriod($datasInicial, $datasFinal);
+        $user = $this->getUser()->getId();
+        $entities = $repository->listarByPeriod($datasInicial, $datasFinal, $user);
 
-        $entity = $repository->findByToday();
+        $entity = $repository->findByUserToday($user);
 
         $paginator = $this->get('knp_paginator')->paginate(
             $entities,
@@ -68,6 +69,7 @@ class TbHorarioController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $entity->setUser($this->getUser());
             $em->persist($entity);
             $em->flush();
 
@@ -135,6 +137,8 @@ class TbHorarioController extends Controller
             throw $this->createNotFoundException('Unable to find TbHorario entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return array(
@@ -159,6 +163,8 @@ class TbHorarioController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find TbHorario entity.');
         }
+
+        $this->get('security.user')->securityUser($entity);
 
         $editForm = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
@@ -203,6 +209,8 @@ class TbHorarioController extends Controller
             throw $this->createNotFoundException('Unable to find TbHorario entity.');
         }
 
+        $this->get('security.user')->securityUser($entity);
+
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
@@ -237,6 +245,8 @@ class TbHorarioController extends Controller
             if (!$entity) {
                 throw $this->createNotFoundException('Unable to find TbHorario entity.');
             }
+
+            $this->get('security.user')->securityUser($entity);
 
             $em->remove($entity);
             $em->flush();

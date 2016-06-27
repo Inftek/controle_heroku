@@ -28,3 +28,11 @@ services:
   dir.generate:
     class: MRS\ControleBundle\Service\GenerateDirService
     arguments: ['@service_container']
+  app.form.user:
+      class: MRS\ControleBundle\Form\TbFinancasType
+      arguments: ['@security.token_storage']
+      tags:
+          - { name: form.type }
+  security.user:
+    class: MRS\ControleBundle\Security\UserVoter
+    arguments: ["@security.token_storage"]

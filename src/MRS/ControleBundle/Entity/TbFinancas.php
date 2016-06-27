@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="tb_financas", indexes={@ORM\Index(name="fk_tipo_entrada", columns={"ten_codigo"}), @ORM\Index(name="fk_categoria", columns={"cat_codigo"})})
  * @ORM\Entity(repositoryClass="MRS\ControleBundle\Repository\FinancasRepository")
  */
-class TbFinancas
+class TbFinancas extends User
 {
     /**
      * @var \DateTime
